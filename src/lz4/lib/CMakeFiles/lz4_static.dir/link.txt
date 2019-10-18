@@ -1,0 +1,2 @@
+/usr/bin/ar qc liblz4.a  CMakeFiles/lz4_static.dir/lz4.c.o CMakeFiles/lz4_static.dir/lz4hc.c.o CMakeFiles/lz4_static.dir/lz4frame.c.o CMakeFiles/lz4_static.dir/xxhash.c.o
+/usr/bin/ranlib liblz4.a
