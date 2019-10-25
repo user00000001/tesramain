@@ -1,7 +1,13 @@
 all:tesra-qml
 
+ifeq ($(shell uname),Linux)
 MTime:=$(shell stat -c %Y qml.pro)
-LastTime:=$(shell cat qml.pro.time || echo "")
+endif
+ifeq ($(shell uname),Darwin)
+MTime:=$(shell stat -f %m qml.pro)
+endif
+
+LastTime:=$(shell cat qml.pro.time||echo "")
 
 tesra-qml:
 	@echo "Building tesra-qml ...depends_prefix: " ${depends_prefix} && \
