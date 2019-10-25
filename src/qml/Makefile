@@ -1,7 +1,7 @@
 all:tesra-qml
 
 MTime:=$(shell stat -c %Y qml.pro)
-LastTime:=$(shell cat qml.pro.time2)
+LastTime:=$(shell cat qml.pro.time || echo "")
 
 tesra-qml:
 	@echo "Building tesra-qml ...depends_prefix: " ${depends_prefix} && \
