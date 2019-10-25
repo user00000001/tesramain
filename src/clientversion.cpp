@@ -98,7 +98,7 @@ std::string FormatFullVersion()
     strversion+=".";
     strversion+=std::to_string(CLIENT_VERSION_BUILD);
     strversion+="-";
-    strversion+=BUILD_SUFFIX;
+    // strversion+=BUILD_SUFFIX;
     return strversion;//CLIENT_BUILD;
 }
 
