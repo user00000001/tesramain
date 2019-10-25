@@ -262,7 +262,7 @@ AC_CHECK_LIB([jsoncpp],[main],JSONCPP_LIBS=-ljsoncpp,AC_MSG_ERROR(libjsoncpp mis
 AC_CHECK_HEADERS([libff/algebra/curves/alt_bn128/alt_bn128_g1.hpp libff/algebra/curves/alt_bn128/alt_bn128_g2.hpp],, AC_MSG_ERROR(libff headers missing),)
 AC_CHECK_LIB([ff],[main],LIBFF_LIBS=-lff,AC_MSG_ERROR(libff missing))
 
-CPPFLAGS="$CXXFLAGS -I$prefix/include/libff "
+CPPFLAGS="$CPPFLAGS -I$prefix/include/libff "
 # CXXFLAGS="$CXXFLAGS -I$prefix/include/libff "
 
 # cryptopp
