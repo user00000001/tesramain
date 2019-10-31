@@ -16,9 +16,9 @@ tesra-qml:
 	${depends_prefix}/qml/bin/lrelease qml.pro && \
 	cd build && \
 	if [ "$(LastTime)" = "" ]; then \
-		echo $(MTime) > ../qml.pro.time; ${depends_prefix}/qml/bin/qmake ../qml.pro  "depends_prefix=$${depends_prefix}";  \
+		${depends_prefix}/qml/bin/qmake ../qml.pro  "depends_prefix=$${depends_prefix}"; echo $(MTime) > ../qml.pro.time;  \
 	else \
-		if [ "$(MTime)" -gt "$(LastTime)" ]; then  echo $(MTime) > ../qml.pro.time; ${depends_prefix}/qml/bin/qmake ../qml.pro  "depends_prefix=$${depends_prefix}" ; fi; \
+		if [ "$(MTime)" -gt "$(LastTime)" ]; then ${depends_prefix}/qml/bin/qmake ../qml.pro  "depends_prefix=$${depends_prefix}" ; echo $(MTime) > ../qml.pro.time;  fi; \
 	fi && \
 	$(MAKE) && \
 	cd ../

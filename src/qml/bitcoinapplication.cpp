@@ -2,7 +2,7 @@
 #include "qt_native/notificator.cpp"
 
 #include "qt_native/transactiontablemodel.h"
-#include "qt_native/macdockiconhandler.h"
+#include "../../qt/macdockiconhandler.h"
 static bool ThreadSafeMessageBox(BitcoinApplication* gui, const std::string& message, const std::string& caption, unsigned int style)
 {
     bool modal = (style & CClientUIInterface::MODAL);
@@ -112,15 +112,15 @@ void BitcoinApplication::createTrayIcon()
     notificator = new Notificator(QApplication::applicationName(), trayIcon, NULL);
 }
 
-#ifndef Q_OS_MAC
 void BitcoinApplication::trayIconActivated(QSystemTrayIcon::ActivationReason reason)
 {
+#ifndef Q_OS_MAC
     if (reason == QSystemTrayIcon::Trigger) {
         // Click on system tray icon triggers show/hide of the main window
         // toggleHidden(); //TODO: Show normal or minimize
     }
-}
 #endif
+}
 
 void BitcoinApplication::createTrayIconMenu()
 {
