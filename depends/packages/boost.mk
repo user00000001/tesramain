@@ -3,6 +3,7 @@ $(package)_version=1_64_0
 $(package)_download_path=https://dl.bintray.com/boostorg/release/1.64.0/source/
 $(package)_file_name=$(package)_$($(package)_version).tar.bz2
 $(package)_sha256_hash=7bcc5caace97baa948931d712ea5f37038dbb1c5d89b43ad4def4ed7cb683332
+$(package)_patches=concept_check.hpp.patch
 
 define $(package)_set_vars
 $(package)_config_opts_release=variant=release
@@ -25,6 +26,9 @@ $(package)_cxxflags_linux=-fPIC
 endef
 
 define $(package)_preprocess_cmds
+  cd $($(package)_extract_dir)/boost && \
+  patch -p0 < $($(package)_patch_dir)/concept_check.hpp.patch  && \
+  cd - && \
   echo "using $(boost_toolset_$(host_os)) : : $($(package)_cxx) : <cxxflags>\"$($(package)_cxxflags) $($(package)_cppflags)\" <linkflags>\"$($(package)_ldflags)\" <archiver>\"$(boost_archiver_$(host_os))\" <striper>\"$(host_STRIP)\"  <ranlib>\"$(host_RANLIB)\" <rc>\"$(host_WINDRES)\" : ;" > user-config.jam
 endef
 

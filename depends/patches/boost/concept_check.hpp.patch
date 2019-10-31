@@ -1,0 +1,14 @@
+--- concept_check.hpp	2017-04-17 10:22:19.000000000 +0800
++++ concept_check.hpp.fixed_name	2019-10-31 13:51:18.000000000 +0800
+@@ -1034,9 +1034,9 @@
+ 
+   // HashedAssociativeContainer
+ 
+-  BOOST_concept(Collection,(C))
++  BOOST_concept(Collection1,(C))
+   {
+-      BOOST_CONCEPT_USAGE(Collection)
++      BOOST_CONCEPT_USAGE(Collection1)
+       {
+         boost::function_requires<boost::InputIteratorConcept<iterator> >();
+         boost::function_requires<boost::InputIteratorConcept<const_iterator> >();
