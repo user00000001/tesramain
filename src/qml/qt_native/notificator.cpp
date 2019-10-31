@@ -25,7 +25,7 @@
 // Note: This could also be worked around using:
 // #define __ASSERT_MACROS_DEFINE_VERSIONS_WITHOUT_UNDERSCORES 0
 #ifdef Q_OS_MAC
-#include "macnotificationhandler.h"
+#include "../../qt/macnotificationhandler.h"
 #include <ApplicationServices/ApplicationServices.h>
 #endif
 

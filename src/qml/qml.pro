@@ -31,8 +31,8 @@ QT_LIBPATH_PREFIX = $$SYSROOT_PREFIX/qml/lib
 TOOLCHAIN_INCLUDE_PATH = $$SYSROOT_PREFIX/include
 TOOLCHAIN_LIB_PATH = $$SYSROOT_PREFIX/lib
 
-
-
+QMAKE_CFLAGS += -Wno-unused-parameter -Wno-logical-op-parentheses -Wno-switch
+QMAKE_CXXFLAGS += -Wno-unused-parameter -Wno-logical-op-parentheses -Wno-switch
 LIBS += -L$$QT_LIBPATH_PREFIX
 
 INCLUDEPATH += $$TOOLCHAIN_INCLUDE_PATH
@@ -146,8 +146,8 @@ SOURCES += main.cpp \
     bip39words.cpp 
 
 macx{
-    SOURCES +=   qt_native/macdockiconhandler.mm \
-    qt_native/macnotificationhandler.mm 
+    SOURCES += ../../qt/macdockiconhandler.mm \
+    ../../qt/macnotificationhandler.mm 
 }
 
 RESOURCES += qml.qrc
@@ -237,8 +237,8 @@ HEADERS += \
     bip39words.h
 
 macx{
-    HEADERS +=   qt_native/macdockiconhandler.h \
-    qt_navive/macnotificationhandler.h 
+    HEADERS += ../../qt/macdockiconhandler.h \
+    ../../qt/macnotificationhandler.h 
 }
 
 
@@ -254,6 +254,12 @@ unix:!macx{
     QMAKE_LFLAGS += -static-libgcc -static-libstdc++ -std=c++11 -pipe -O2 -Wstack-protector -fstack-protector-all -Wl,--exclude-libs -Wl,ALL -pthread
 }
 
+macx{
+    QMAKE_LFLAGS += \
+#    -static \
+    -std=c++11 -pipe -O2 -Wstack-protector -fstack-protector-all -pthread
+#    QMAKE_LFLAGS += -L$$PWD/../../depends/x86_64-apple-darwin14/lib
+}
 
 
 
@@ -320,6 +326,35 @@ LIBS += -L$$TOOLCHAIN_LIB_PATH \
         -lpthread
 }
 
+macx{
+LIBS += -L$$TOOLCHAIN_LIB_PATH \
+        # -lfontconfig \
+        # -lfreetype \
+        -lboost_system-mt \
+        -lboost_filesystem-mt \
+        -lboost_program_options-mt \
+#        -lboost_system-mt \
+#        -lboost_filesystem-mt \
+#        -lboost_program_options-mt \
+        # -lboost_thread-mt \
+        -lboost_thread-mt \
+        -lpthread \
+        -lboost_chrono-mt \
+        -lboost_log-mt \
+        -lboost_random-mt \
+#        -lboost_chrono \
+#        -lboost_log \
+#        -lboost_random \
+        -lprotobuf \
+        -lqrencode \
+        -ldb_cxx-4.8 \
+        -lssl \
+        -lcrypto \
+        -lminiupnpc \
+        -levent_pthreads \
+        -lpthread
+}
+
 
 LIBS += -L$$PWD/../lz4/lib \
         -llz4
@@ -351,6 +386,10 @@ win32{
 
 unix:!macx{
     LIBS +=  -lanl
+}
+
+macx{
+    LIBS += -framework AppKit
 }
 
 
